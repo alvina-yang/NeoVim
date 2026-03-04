@@ -32,13 +32,13 @@ return {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button("n", "  New File", "<cmd>ene<CR>"),
-      dashboard.button("e", "  File Explorer", "<cmd>NvimTreeToggle<CR>"),
-      dashboard.button("f", "󰱼  Find File", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("g", "  Find Word", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("r", "  Recent Files", "<cmd>Telescope oldfiles<CR>"),
-      dashboard.button("p", "󰁯  Restore Session", "<cmd>AutoSession restore<CR>"),
-      dashboard.button("q", "  Quit NVIM", "<cmd>qa<CR>"),
+      dashboard.button("n", "󰈔  >  New File", "<cmd>ene<CR>"),
+      dashboard.button("e", "󰉋  >  File Explorer", "<cmd>NvimTreeToggle<CR>"),
+      dashboard.button("f", "󰱼  >  Find File", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("g", "󰊄  >  Find Word", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("r", "󰋚  >  Recent Files", "<cmd>Telescope oldfiles<CR>"),
+      dashboard.button("p", "󰁯  >  Restore Session", "<cmd>AutoSession restore<CR>"),
+      dashboard.button("q", "󰗼  >  Quit NVIM", "<cmd>qa<CR>"),
     }
 
     local recent = {

@@ -53,6 +53,7 @@ return {
       { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Git diff view" },
       { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File git history" },
       { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch git history" },
+      { "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Close diff view" },
     },
     config = function()
       require("diffview").setup()
