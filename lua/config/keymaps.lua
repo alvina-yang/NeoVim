@@ -37,6 +37,8 @@ vim.keymap.set("t", "<D-v>", function()
 end, { desc = "Paste from clipboard", silent = true })
 
 -- Terminal
+vim.keymap.set("n", "<leader>th", "<cmd>split | terminal<cr>", { desc = "Terminal below", silent = true })
+vim.keymap.set("n", "<leader>tv", "<cmd>vsplit | terminal<cr>", { desc = "Terminal right", silent = true })
 vim.keymap.set("t", "<Esc>", "<Esc>", { silent = true })
 vim.keymap.set("t", "<C-n>", [[<C-\><C-n>]], { silent = true })
 vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { silent = true })

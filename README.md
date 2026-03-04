@@ -159,6 +159,8 @@ Run these commands inside Neovim:
 | `Space sv` | Split right (vertical) |
 | `Space sh` | Split below (horizontal) |
 | `Space sc` | Close split |
+| `Space tv` | Terminal right (vertical) |
+| `Space th` | Terminal below (horizontal) |
 | `Ctrl-h/j/k/l` | Navigate between splits |
 | `Tab` / `Shift-Tab` | Next/previous buffer tab |
 | `Space c` | Close current buffer tab |
