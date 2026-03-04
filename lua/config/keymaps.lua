@@ -18,7 +18,15 @@ vim.keymap.set("n", "<leader>c", function()
   vim.cmd("bdelete! " .. buf)
 end, { desc = "Close tab", silent = true })
 
--- Clipboard (Cmd+C / Cmd+V for terminals that support it)
+-- Clipboard: always yank to system clipboard
+vim.keymap.set("n", "y", '"+y', { desc = "Yank to clipboard", silent = true })
+vim.keymap.set("v", "y", '"+y', { desc = "Yank to clipboard", silent = true })
+vim.keymap.set("n", "Y", '"+Y', { desc = "Yank line to clipboard", silent = true })
+vim.keymap.set("n", "p", '"+p', { desc = "Paste from clipboard", silent = true })
+vim.keymap.set("n", "P", '"+P', { desc = "Paste from clipboard before", silent = true })
+vim.keymap.set("v", "p", '"+p', { desc = "Paste from clipboard", silent = true })
+
+-- Clipboard (Cmd+C / Cmd+V for GUI/terminals that support it)
 vim.keymap.set("n", "<D-c>", '"+y', { desc = "Copy to clipboard", silent = true })
 vim.keymap.set("v", "<D-c>", '"+y', { desc = "Copy to clipboard", silent = true })
 vim.keymap.set("n", "<D-v>", '"+p', { desc = "Paste from clipboard", silent = true })

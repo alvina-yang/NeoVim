@@ -126,9 +126,9 @@ This document covers every plugin installed, what it does, how to use it, and ev
 | 37 | which-key.nvim | UI | Shows available keybindings after pressing leader |
 | 38 | oil.nvim | Navigation | Edit filesystem like a buffer |
 | 39 | markdown-preview.nvim | Tools | Live markdown preview in browser |
-| 40 | catppuccin | Theme | Default color scheme |
-| 41 | tokyonight.nvim | Theme | Alternative color scheme |
-| 42 | kanagawa.nvim | Theme | Alternative color scheme |
+| 40 | kanagawa.nvim | Theme | Default color scheme (wave variant) |
+| 41 | catppuccin | Theme | Alternative color scheme |
+| 42 | tokyonight.nvim | Theme | Alternative color scheme |
 | 43 | nightfox.nvim | Theme | Alternative color scheme |
 
 ---
@@ -306,7 +306,7 @@ This document covers every plugin installed, what it does, how to use it, and ev
 **How to use:** Just open `nvim` with no arguments. Press the shortcut keys shown on the dashboard:
 
 - `e` — Create new file
-- `SPC ee` — Open file explorer
+- `SPC e` — Open file explorer
 - `SPC ff` — Find file
 - `SPC fg` — Search text in files
 - `SPC fr` — Recent files
@@ -489,7 +489,7 @@ This document covers every plugin installed, what it does, how to use it, and ev
 **How to use:**
 - `Tab` — Switch to next buffer tab
 - `Shift-Tab` — Switch to previous buffer tab
-- `Space w` — Close current buffer tab
+- `Space c` — Close current buffer tab
 
 ---
 
@@ -738,16 +738,16 @@ These work in both Normal mode and Terminal mode.
 
 ### Changing Color Scheme
 
-Available themes: `catppuccin` (default), `tokyonight`, `kanagawa`, `nightfox`
+Available themes: `kanagawa-wave` (default), `kanagawa-dragon`, `kanagawa-lotus`, `catppuccin`, `tokyonight`, `nightfox`
 
 To switch, edit `lua/plugins/colorscheme.lua` and change:
 ```lua
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme kanagawa-wave")
 ```
 to any of:
 ```lua
+vim.cmd("colorscheme catppuccin")
 vim.cmd("colorscheme tokyonight")
-vim.cmd("colorscheme kanagawa")
 vim.cmd("colorscheme nightfox")
 ```
 

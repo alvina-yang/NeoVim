@@ -11,7 +11,7 @@ A fully-featured Neovim setup for macOS with LSP, autocompletion, fuzzy finding,
 - Fuzzy file/text search with Telescope
 - LSP-powered autocompletion, go-to-definition, and diagnostics
 - Inline git diff markers and LazyGit integration
-- Catppuccin color scheme with a custom statusline
+- Kanagawa Wave color scheme with a custom statusline
 - Autosave on insert leave and focus lost
 - Flash jump to navigate anywhere on screen instantly
 
@@ -121,7 +121,7 @@ Run these commands inside Neovim:
     │   └── keymaps.lua         All keybindings (splits, tabs, clipboard, terminal)
     └── plugins/
         ├── alpha.lua           Dashboard/greeter
-        ├── colorscheme.lua     Catppuccin (default) + extra themes
+        ├── colorscheme.lua     Kanagawa Wave (default) + extra themes
         ├── editor.lua          Autopairs, comments, surround, indent, flash, illuminate
         ├── git.lua             Git blame, lazygit, gitsigns, diffview
         ├── lsp.lua             LSP, completion, trouble, lsp-progress
@@ -214,7 +214,7 @@ Run these commands inside Neovim:
 | `]t` / `[t` | Next/previous TODO comment |
 | `Space mp` | Toggle markdown preview |
 
-For the **complete keybinding reference and plugin guide**, see [INSTRUCTIONS.md](INSTRUCTIONS.md).
+For the **complete keybinding reference and plugin guide**, see [INFO.md](INFO.md).
 
 ---
 
