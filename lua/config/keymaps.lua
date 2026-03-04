@@ -1,0 +1,37 @@
+-- Split navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+
+-- Splits
+vim.keymap.set("n", "<leader>l", "<cmd>vsplit<cr>", { desc = "Split right", silent = true })
+vim.keymap.set("n", "<leader>b", "<cmd>split<cr>", { desc = "Split bottom", silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>close<cr>", { desc = "Close split", silent = true })
+
+-- Buffers (tabs)
+vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next tab", silent = true })
+vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous tab", silent = true })
+vim.keymap.set("n", "<leader>w", function()
+  local buf = vim.api.nvim_get_current_buf()
+  vim.cmd("BufferLineCyclePrev")
+  vim.cmd("bdelete! " .. buf)
+end, { desc = "Close tab", silent = true })
+
+-- Clipboard (Cmd+C / Cmd+V for terminals that support it)
+vim.keymap.set("n", "<D-c>", '"+y', { desc = "Copy to clipboard", silent = true })
+vim.keymap.set("v", "<D-c>", '"+y', { desc = "Copy to clipboard", silent = true })
+vim.keymap.set("n", "<D-v>", '"+p', { desc = "Paste from clipboard", silent = true })
+vim.keymap.set("i", "<D-v>", "<C-r>+", { desc = "Paste from clipboard", silent = true })
+vim.keymap.set("t", "<D-v>", function()
+  local clipboard = vim.fn.getreg("+")
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(clipboard, true, true, true), "t", false)
+end, { desc = "Paste from clipboard", silent = true })
+
+-- Terminal
+vim.keymap.set("t", "<Esc>", "<Esc>", { silent = true })
+vim.keymap.set("t", "<C-n>", [[<C-\><C-n>]], { silent = true })
+vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { silent = true })
+vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { silent = true })
+vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { silent = true })
+vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { silent = true })
