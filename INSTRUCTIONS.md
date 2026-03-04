@@ -155,15 +155,15 @@ This document covers every plugin installed, what it does, how to use it, and ev
 |---------|--------|
 | `Tab` | Next buffer tab |
 | `Shift-Tab` | Previous buffer tab |
-| `Space w` | Close current buffer tab |
+| `Space c` | Close current buffer tab |
 
 ### Splits
 
 | Keybind | Action |
 |---------|--------|
-| `Space l` | Split pane to the right |
-| `Space b` | Split pane below |
-| `Space x` | Close current split |
+| `Space sv` | Split pane to the right (vertical) |
+| `Space sh` | Split pane below (horizontal) |
+| `Space sc` | Close current split |
 | `Ctrl-h` | Move to left split |
 | `Ctrl-j` | Move to split below |
 | `Ctrl-k` | Move to split above |
@@ -717,9 +717,9 @@ Neovim has a built-in terminal. You can open it with `:terminal`.
 
 | Keybind | Action |
 |---------|--------|
-| `Space l` | New vertical split (right) |
-| `Space b` | New horizontal split (bottom) |
-| `Space x` | Close current split |
+| `Space sv` | New vertical split (right) |
+| `Space sh` | New horizontal split (bottom) |
+| `Space sc` | Close current split |
 
 ### Navigating Splits
 

@@ -140,18 +140,75 @@ Run these commands inside Neovim:
 
 **Leader key = `Space`**
 
+### Navigation
 | Keybind | Action |
 |---------|--------|
 | `Space e` | Toggle file explorer |
+| `Space o` | Oil file manager |
 | `Space ff` | Find files |
 | `Space fg` | Live grep (search text in all files) |
 | `Space fr` | Recent files |
-| `Space lg` | Open LazyGit (full git UI) |
-| `gd` | Go to definition |
-| `K` | Hover docs |
+| `Space fc` | Find word under cursor |
+| `Space ft` | Find all TODOs |
 | `s` + chars | Flash jump anywhere on screen |
+| `]]` / `[[` | Next/previous word occurrence |
+
+### Splits & Tabs
+| Keybind | Action |
+|---------|--------|
+| `Space sv` | Split right (vertical) |
+| `Space sh` | Split below (horizontal) |
+| `Space sc` | Close split |
+| `Ctrl-h/j/k/l` | Navigate between splits |
 | `Tab` / `Shift-Tab` | Next/previous buffer tab |
+| `Space c` | Close current buffer tab |
+
+### Code (LSP)
+| Keybind | Action |
+|---------|--------|
+| `gd` | Go to definition |
+| `gr` | Find references |
+| `K` | Hover docs |
+| `Space rn` | Rename symbol |
+| `Space ca` | Code action |
+| `Space d` | Show diagnostic popup |
+| `[d` / `]d` | Previous/next diagnostic |
+| `Space xx` | Trouble diagnostics panel |
+
+### Git
+| Keybind | Action |
+|---------|--------|
+| `Space lg` | Open LazyGit |
+| `Space gd` | Diff view |
+| `Space gh` | File git history |
+| `]h` / `[h` | Next/previous git hunk |
+| `Space hp` | Preview hunk |
+| `Space hr` | Reset hunk |
+
+### Session & Terminal
+| Keybind | Action |
+|---------|--------|
+| `Space ws` | Save session |
+| `Space wr` | Restore session |
 | `Ctrl-n` | Exit terminal mode to Normal mode |
+| `Esc` | Passes Escape to terminal app (e.g. Claude Code) |
+
+### Notifications
+| Keybind | Action |
+|---------|--------|
+| `Space nd` | Dismiss notifications |
+| `Space nm` | Message history |
+| `Space nn` | Search notifications |
+
+### Other
+| Keybind | Action |
+|---------|--------|
+| `gcc` | Toggle comment on line |
+| `gc` (visual) | Toggle comment on selection |
+| `ysiw"` | Surround word with quotes |
+| `cs"'` | Change surrounding `"` to `'` |
+| `]t` / `[t` | Next/previous TODO comment |
+| `Space mp` | Toggle markdown preview |
 
 For the **complete keybinding reference and plugin guide**, see [INSTRUCTIONS.md](INSTRUCTIONS.md).
 

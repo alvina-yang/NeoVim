@@ -6,24 +6,39 @@ return {
     local dashboard = require("alpha.themes.dashboard")
 
     dashboard.section.header.val = {
-      "                                                     ",
-      "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-      "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-      "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-      "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-      "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-      "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-      "                                                     ",
+      "                                                   ",
+      "                                              ___  ",
+      "                                           ,o88888 ",
+      "                                        ,o8888888' ",
+      "                  ,:o:o:oooo.        ,8O88Pd8888\"  ",
+      "              ,.::.::o:ooooOoOoO. ,oO8O8Pd888'\"    ",
+      "            ,.:.::o:ooOoOoOO8O8OOo.8OOPd8O8O\"      ",
+      "           , ..:.::o:ooOoOOOO8OOOOo.FdO8O8\"        ",
+      "          , ..:.::o:ooOoOO8O888O8O,COCOO\"          ",
+      "         , . ..:.::o:ooOoOOOO8OOOOCOCO\"            ",
+      "          . ..:.::o:ooOoOoOO8O8OCCCC\"o             ",
+      "             . ..:.::o:ooooOoCoCCC\"o:o             ",
+      "             . ..:.::o:o:,cooooCo\"oo:o:            ",
+      "          `   . . ..:.:cocoooo\"'o:o:::'            ",
+      "          .`   . ..::ccccoc\"'o:o:o:::'             ",
+      "         :.:.    ,c:cccc\"':.:.:.:.:.'              ",
+      "       ..:.:'`::::c:\"'..:.:.:.:.:.'               ",
+      "     ...:.'.:.::::\"'    . . . . .'                 ",
+      "    .. . ....:.\"' `   .  . . ''                    ",
+      "  . . . ....\"'                                     ",
+      "  .. . .\"'                                         ",
+      " .                                                 ",
+      "",
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button("e", "  > New File", "<cmd>ene<CR>"),
-      dashboard.button("SPC ee", "  > Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
-      dashboard.button("SPC ff", "󰱼 > Find File", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("SPC fg", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("SPC fr", "  > Recent Files", "<cmd>Telescope oldfiles<CR>"),
-      dashboard.button("SPC wr", "󰁯  > Restore Session For Current Directory", "<cmd>AutoSession restore<CR>"),
-      dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
+      dashboard.button("n", "  New File", "<cmd>ene<CR>"),
+      dashboard.button("e", "  File Explorer", "<cmd>NvimTreeToggle<CR>"),
+      dashboard.button("f", "󰱼  Find File", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("g", "  Find Word", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("r", "  Recent Files", "<cmd>Telescope oldfiles<CR>"),
+      dashboard.button("p", "󰁯  Restore Session", "<cmd>AutoSession restore<CR>"),
+      dashboard.button("q", "  Quit NVIM", "<cmd>qa<CR>"),
     }
 
     local recent = {
@@ -66,7 +81,7 @@ return {
     }
 
     dashboard.config.layout = {
-      { type = "padding", val = 2 },
+      { type = "padding", val = 1 },
       dashboard.section.header,
       { type = "padding", val = 2 },
       dashboard.section.buttons,
@@ -77,6 +92,17 @@ return {
       { type = "padding", val = 1 },
       dashboard.section.footer,
     }
+
+    -- Color highlights for the header
+    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#89b4fa" })
+    vim.api.nvim_set_hl(0, "AlphaButtons", { fg = "#a6e3a1" })
+    vim.api.nvim_set_hl(0, "AlphaShortcut", { fg = "#f9e2af" })
+
+    dashboard.section.header.opts.hl = "AlphaHeader"
+    dashboard.section.buttons.opts.hl = "AlphaButtons"
+    for _, button in ipairs(dashboard.section.buttons.val) do
+      button.opts.hl_shortcut = "AlphaShortcut"
+    end
 
     alpha.setup(dashboard.config)
     vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
