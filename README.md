@@ -178,9 +178,13 @@ Run these commands inside Neovim:
 ### Git
 | Keybind | Action |
 |---------|--------|
-| `Space lg` | Open LazyGit |
-| `Space gd` | Diff view |
+| `Space lg` | Open LazyGit (full git UI: stage, commit, push, branch) |
+| `Space gd` | Diff view (side-by-side uncommitted changes) |
 | `Space gh` | File git history |
+| `Space gH` | Branch git history |
+| `Space gq` | Close diff view |
+| `Space gc` | Browse git commits (Telescope) |
+| `Space gb` | Browse git branches (Telescope) |
 | `]h` / `[h` | Next/previous git hunk |
 | `Space hp` | Preview hunk |
 | `Space hr` | Reset hunk |
