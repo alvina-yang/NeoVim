@@ -17,7 +17,26 @@ A fully-featured Neovim setup for macOS with LSP, autocompletion, fuzzy finding,
 
 ---
 
-## Quick Start (Fresh Mac Setup)
+## Quick Setup (Automated)
+
+Run the setup scripts to install and configure everything automatically:
+
+```bash
+# Install Homebrew first if you don't have it
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Set up Neovim with all plugins and dependencies
+./scripts/setup-neovim.sh
+
+# Set up terminal (iTerm2, CLI tools, prompt, etc.)
+./scripts/setup-terminal.sh
+```
+
+If you prefer to set things up manually, follow the steps below.
+
+---
+
+## Manual Setup (Fresh Mac)
 
 ### 1. Install Homebrew
 
@@ -240,6 +259,12 @@ For the **complete keybinding reference and plugin guide**, see [INFO.md](INFO.m
 | Telescope grep fails | Install ripgrep: `brew install ripgrep` |
 | Colors look wrong | Ensure terminal supports true color and uses `xterm-256color` |
 | Branch shows `.invalid` | Normal in deep subdirectories, statusline auto-detects the correct branch |
+
+---
+
+## Terminal Setup
+
+For a full terminal customization guide (iTerm2, Starship/Powerlevel10k prompt, CLI tools like eza, bat, fzf, zoxide, thefuck, and more), see [terminal.md](terminal.md).
 
 ---
 
