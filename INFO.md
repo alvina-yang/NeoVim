@@ -126,7 +126,7 @@ This document covers every plugin installed, what it does, how to use it, and ev
 | 37 | which-key.nvim | UI | Shows available keybindings after pressing leader |
 | 38 | oil.nvim | Navigation | Edit filesystem like a buffer |
 | 39 | markdown-preview.nvim | Tools | Live markdown preview in browser |
-| 40 | kanagawa.nvim | Theme | Default color scheme (wave variant) |
+| 40 | kanagawa.nvim | Theme | Default color scheme |
 | 41 | catppuccin | Theme | Alternative color scheme |
 | 42 | tokyonight.nvim | Theme | Alternative color scheme |
 | 43 | nightfox.nvim | Theme | Alternative color scheme |
@@ -738,11 +738,11 @@ These work in both Normal mode and Terminal mode.
 
 ### Changing Color Scheme
 
-Available themes: `kanagawa-wave` (default), `kanagawa-dragon`, `kanagawa-lotus`, `catppuccin`, `tokyonight`, `nightfox`
+Available themes: `kanagawa` (default), `kanagawa-dragon`, `kanagawa-lotus`, `catppuccin`, `tokyonight`, `nightfox`
 
 To switch, edit `lua/plugins/colorscheme.lua` and change:
 ```lua
-vim.cmd("colorscheme kanagawa-wave")
+vim.cmd("colorscheme kanagawa")
 ```
 to any of:
 ```lua

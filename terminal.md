@@ -1,6 +1,22 @@
 # Terminal Setup Guide
 
-Complete guide to setting up a customized, productive terminal environment on macOS. Uses a Kanagawa Wave dark theme to match the Neovim configuration.
+Complete guide to setting up a customized, productive terminal environment on macOS. Uses a Kanagawa dark theme to match the Neovim configuration.
+
+---
+
+## Quick Setup (Automated)
+
+Run the setup script to install and configure everything automatically:
+
+```bash
+./scripts/setup-terminal.sh
+```
+
+For Neovim setup:
+
+```bash
+./scripts/setup-neovim.sh
+```
 
 ---
 
@@ -25,9 +41,9 @@ After installing, set it in iTerm2:
 
 ## 3. iTerm2 Configuration
 
-### Kanagawa Wave Color Scheme
+### Kanagawa Color Scheme
 
-The Kanagawa Wave color scheme is available in the [kanagawa.nvim extras](https://github.com/rebelot/kanagawa.nvim/tree/master/extras). Download the `.itermcolors` file and import it:
+The Kanagawa color scheme is available in the [kanagawa.nvim extras](https://github.com/rebelot/kanagawa.nvim/tree/master/extras). Download the `.itermcolors` file and import it:
 
 1. Download `kanagawa_wave.itermcolors` from the repo's `extras/` folder
 2. **Settings > Profiles > Colors > Color Presets > Import** — select the downloaded file
@@ -42,12 +58,47 @@ The Kanagawa Wave color scheme is available in the [kanagawa.nvim extras](https:
 | Transparency | Settings > Profiles > Window > Transparency | **10-15%** |
 | Background blur | Settings > Profiles > Window > Blur | **Enabled** |
 
-## 4. Shell Tools
+## 4. Shell Prompt
+
+### Option A: Starship (Recommended)
+
+A fast, customizable, cross-shell prompt with git status, language versions, and icons.
+
+```bash
+brew install starship
+```
+
+Add to `~/.zshrc`:
+
+```bash
+eval "$(starship init zsh)"
+```
+
+See [Section 6](#6-starship-prompt-configuration) for the full Kanagawa-themed config.
+
+### Option B: Powerlevel10k
+
+A feature-rich zsh theme with an interactive configuration wizard.
+
+```bash
+brew install powerlevel10k
+echo 'source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+```
+
+Then restart your terminal — the configuration wizard will launch automatically. Choose your preferred style (icons, colors, prompt segments). To reconfigure later:
+
+```bash
+p10k configure
+```
+
+> **Note:** If using Powerlevel10k, skip the Starship sections. Do not use both at the same time.
+
+## 5. Shell Tools
 
 ### Install Everything
 
 ```bash
-brew install starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr zsh-autosuggestions zsh-syntax-highlighting
+brew install starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr thefuck zsh-autosuggestions zsh-syntax-highlighting
 ```
 
 ### Tool Overview
@@ -65,6 +116,7 @@ brew install starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr 
 | **lazygit** | — | Terminal UI for git with an intuitive interface |
 | **btop** | `htop`/`top` | Beautiful system resource monitor |
 | **tldr** | `man` | Simplified, example-based command documentation |
+| **thefuck** | — | Auto-corrects your previous mistyped command |
 | **zsh-autosuggestions** | — | Suggests commands as you type based on history |
 | **zsh-syntax-highlighting** | — | Colors valid/invalid commands in real-time |
 
@@ -115,9 +167,12 @@ btop                           # open system monitor
 # tldr
 tldr tar                       # show simplified examples for tar
 tldr git-rebase                # show simplified examples for git-rebase
+
+# thefuck — auto-correct mistakes
+fuck                           # re-run previous command with correction
 ```
 
-## 5. Zsh Configuration
+## 6. Zsh Configuration
 
 Add the following to `~/.zshrc`:
 
@@ -130,6 +185,9 @@ eval "$(zoxide init zsh)"
 
 # fzf keybindings & completion (Ctrl+R history, Ctrl+T files)
 source <(fzf --zsh)
+
+# thefuck (corrects previous command)
+eval $(thefuck --alias)
 
 # Zsh plugins
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -144,7 +202,7 @@ alias cat="bat"
 alias cd="z"
 ```
 
-## 6. Starship Prompt Configuration
+## 7. Starship Prompt Configuration
 
 Create `~/.config/starship.toml` with a Kanagawa-inspired theme:
 
@@ -212,7 +270,7 @@ style = "#7FB4CA"
 symbol = " "
 ```
 
-## 7. Git Delta Configuration
+## 8. Git Delta Configuration
 
 Configure git to use delta as its pager:
 
@@ -227,7 +285,7 @@ git config --global merge.conflictstyle diff3
 git config --global diff.colorMoved default
 ```
 
-## 8. Bat Configuration
+## 9. Bat Configuration
 
 Create `~/.config/bat/config`:
 
