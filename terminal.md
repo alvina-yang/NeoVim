@@ -38,18 +38,18 @@ brew install --cask font-jetbrains-mono-nerd-font
 
 ## 3. Ghostty Configuration
 
-Create `~/.config/ghostty/config`:
+On macOS, the config file is at `~/Library/Application Support/com.mitchellh.ghostty/config` (Ghostty creates it on first launch). Edit it with:
 
 ```
 # Theme
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Font
 font-family = JetBrainsMono Nerd Font
 font-size = 14
 
 # Window
-window-decoration = false
+macos-titlebar-style = transparent
 window-padding-x = 8
 window-padding-y = 4
 background-opacity = 0.95

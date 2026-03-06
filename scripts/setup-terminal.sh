@@ -25,17 +25,18 @@ brew install starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr 
 
 # Configure Ghostty
 echo "==> Configuring Ghostty..."
-mkdir -p ~/.config/ghostty
-cat > ~/.config/ghostty/config << 'GHOSTTY'
+GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
+mkdir -p "$GHOSTTY_DIR"
+cat > "$GHOSTTY_DIR/config" << 'GHOSTTY'
 # Theme
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Font
 font-family = JetBrainsMono Nerd Font
 font-size = 14
 
 # Window
-window-decoration = false
+macos-titlebar-style = transparent
 window-padding-x = 8
 window-padding-y = 4
 background-opacity = 0.95
