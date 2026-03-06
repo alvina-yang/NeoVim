@@ -1,6 +1,6 @@
 # Terminal Setup Guide
 
-Complete guide to setting up a customized, productive terminal environment on macOS. Uses a Kanagawa dark theme to match the Neovim configuration.
+Complete guide to setting up a customized, productive terminal environment on macOS. Uses a Catppuccin Mocha dark theme to match the Neovim configuration.
 
 ---
 
@@ -20,12 +20,12 @@ For Neovim setup:
 
 ---
 
-## 1. Install iTerm2
+## 1. Install Ghostty
 
-Download and install iTerm2 as a replacement for the default macOS Terminal:
+Ghostty is a fast, native terminal emulator with GPU acceleration.
 
 ```bash
-brew install --cask iterm2
+brew install --cask ghostty
 ```
 
 ## 2. Install a Nerd Font
@@ -36,31 +36,58 @@ Nerd Fonts include icons used by many CLI tools (eza, starship, etc).
 brew install --cask font-jetbrains-mono-nerd-font
 ```
 
-After installing, set it in iTerm2:
-- **Settings > Profiles > Text > Font** — select **JetBrainsMono Nerd Font**, size 13-14
+## 3. Ghostty Configuration
 
-## 3. iTerm2 Configuration
+Create `~/.config/ghostty/config`:
 
-### Kanagawa Color Scheme
+```
+# Theme
+theme = catppuccin-mocha
 
-The Kanagawa color scheme is available in the [kanagawa.nvim extras](https://github.com/rebelot/kanagawa.nvim/tree/master/extras). Download the `.itermcolors` file and import it:
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 14
 
-1. Download `kanagawa_wave.itermcolors` from the repo's `extras/` folder
-2. **Settings > Profiles > Colors > Color Presets > Import** — select the downloaded file
-3. **Settings > Profiles > Colors > Color Presets** — select **kanagawa_wave**
+# Window
+window-decoration = false
+window-padding-x = 8
+window-padding-y = 4
+background-opacity = 0.95
+background-blur-radius = 20
 
-### Recommended iTerm2 Settings
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
 
-| Setting | Path | Value |
-|---------|------|-------|
-| Theme | Settings > Appearance > Theme | **Minimal** |
-| Text editing | Settings > Profiles > Keys > Presets | **Natural Text Editing** |
-| Transparency | Settings > Profiles > Window > Transparency | **10-15%** |
-| Background blur | Settings > Profiles > Window > Blur | **Enabled** |
+# Scrollback
+scrollback-limit = 10000
 
-## 4. Shell Prompt
+# Shell integration
+shell-integration = zsh
 
-### Option A: Starship (Recommended)
+# Mouse
+mouse-hide-while-typing = true
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = true
+```
+
+Ghostty ships with Catppuccin Mocha built in — no manual color import needed.
+
+### Ghostty Keybindings
+
+| Keybind | Action |
+|---------|--------|
+| `Cmd+D` | Split right |
+| `Cmd+Shift+D` | Split down |
+| `Cmd+T` | New tab |
+| `Cmd+W` | Close split/tab |
+| `Cmd+[` / `Cmd+]` | Navigate splits |
+| `Cmd+,` | Open config |
+
+## 4. Shell Prompt (Starship)
 
 A fast, customizable, cross-shell prompt with git status, language versions, and icons.
 
@@ -74,24 +101,13 @@ Add to `~/.zshrc`:
 eval "$(starship init zsh)"
 ```
 
-See [Section 6](#6-starship-prompt-configuration) for the full Kanagawa-themed config.
-
-### Option B: Powerlevel10k
-
-A feature-rich zsh theme with an interactive configuration wizard.
+Generate the Catppuccin powerline theme:
 
 ```bash
-brew install powerlevel10k
-echo 'source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+starship preset catppuccin-powerline -o ~/.config/starship.toml
 ```
 
-Then restart your terminal — the configuration wizard will launch automatically. Choose your preferred style (icons, colors, prompt segments). To reconfigure later:
-
-```bash
-p10k configure
-```
-
-> **Note:** If using Powerlevel10k, skip the Starship sections. Do not use both at the same time.
+This creates a Catppuccin-themed powerline prompt that matches the rest of your setup automatically.
 
 ## 5. Shell Tools
 
@@ -202,75 +218,7 @@ alias cat="bat"
 alias cd="z"
 ```
 
-## 7. Starship Prompt Configuration
-
-Create `~/.config/starship.toml` with a Kanagawa-inspired theme:
-
-```toml
-# Kanagawa-inspired Starship prompt
-
-format = """
-$directory\
-$git_branch\
-$git_status\
-$nodejs\
-$python\
-$rust\
-$golang\
-$docker_context\
-$cmd_duration\
-$line_break\
-$character"""
-
-[directory]
-style = "bold #7E9CD8"
-truncation_length = 3
-truncate_to_repo = true
-
-[git_branch]
-style = "bold #957FB8"
-symbol = " "
-
-[git_status]
-style = "#DCA561"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-modified = "!${count}"
-untracked = "?${count}"
-staged = "+${count}"
-
-[character]
-success_symbol = "[❯](bold #76946A)"
-error_symbol = "[❯](bold #C34043)"
-
-[cmd_duration]
-style = "#727169"
-min_time = 2_000
-format = "took [$duration]($style) "
-
-[nodejs]
-style = "#98BB6C"
-symbol = " "
-
-[python]
-style = "#E6C384"
-symbol = " "
-
-[rust]
-style = "#FF5D62"
-symbol = " "
-
-[golang]
-style = "#7FB4CA"
-symbol = " "
-
-[docker_context]
-style = "#7FB4CA"
-symbol = " "
-```
-
-## 8. Git Delta Configuration
+## 7. Git Delta Configuration
 
 Configure git to use delta as its pager:
 
@@ -280,17 +228,17 @@ git config --global interactive.diffFilter "delta --color-only"
 git config --global delta.navigate true
 git config --global delta.dark true
 git config --global delta.line-numbers true
-git config --global delta.syntax-theme "TwoDark"
+git config --global delta.syntax-theme "Catppuccin Mocha"
 git config --global merge.conflictstyle diff3
 git config --global diff.colorMoved default
 ```
 
-## 9. Bat Configuration
+## 8. Bat Configuration
 
 Create `~/.config/bat/config`:
 
 ```
---theme="TwoDark"
+--theme="Catppuccin Mocha"
 ```
 
-This sets the default syntax highlighting theme for bat to match the dark Kanagawa aesthetic.
+This sets the default syntax highlighting theme for bat to match the Catppuccin Mocha aesthetic.

@@ -2,18 +2,36 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000,
-  },
-  { "nvim-tree/nvim-web-devicons", opts = {} },
-  { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
-  {
-    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("kanagawa").setup({})
-      vim.cmd("colorscheme kanagawa")
+      require("catppuccin").setup({
+        flavour = "mocha",
+        integrations = {
+          alpha = true,
+          gitsigns = true,
+          nvimtree = true,
+          telescope = { enabled = true },
+          treesitter = true,
+          notify = true,
+          noice = true,
+          which_key = true,
+          flash = true,
+          indent_blankline = { enabled = true },
+          native_lsp = {
+            enabled = true,
+            underlines = {
+              errors = { "undercurl" },
+              warnings = { "undercurl" },
+            },
+          },
+        },
+      })
+      vim.cmd("colorscheme catppuccin-mocha")
     end,
   },
-  { "EdenEast/nightfox.nvim", lazy = false, priority = 1000 },
+  { "nvim-tree/nvim-web-devicons", opts = {} },
+  { "folke/tokyonight.nvim", lazy = true, priority = 1000 },
+  { "rebelot/kanagawa.nvim", lazy = true, priority = 1000 },
+  { "EdenEast/nightfox.nvim", lazy = true, priority = 1000 },
 }

@@ -126,8 +126,8 @@ This document covers every plugin installed, what it does, how to use it, and ev
 | 37 | which-key.nvim | UI | Shows available keybindings after pressing leader |
 | 38 | oil.nvim | Navigation | Edit filesystem like a buffer |
 | 39 | markdown-preview.nvim | Tools | Live markdown preview in browser |
-| 40 | kanagawa.nvim | Theme | Default color scheme |
-| 41 | catppuccin | Theme | Alternative color scheme |
+| 40 | catppuccin | Theme | Default color scheme (mocha) |
+| 41 | kanagawa.nvim | Theme | Alternative color scheme |
 | 42 | tokyonight.nvim | Theme | Alternative color scheme |
 | 43 | nightfox.nvim | Theme | Alternative color scheme |
 
@@ -471,12 +471,7 @@ This document covers every plugin installed, what it does, how to use it, and ev
 
 **What it does:** A customized statusline at the bottom of the screen showing: mode, branch, diff stats, diagnostics, filename, LSP progress, encoding, file type, and cursor position.
 
-**Custom theme colors:**
-- Blue = Normal mode
-- Green = Insert mode
-- Violet = Visual mode
-- Yellow = Command mode
-- Red = Replace mode
+**Theme:** Uses the built-in Catppuccin Mocha lualine theme. Mode colors match the Catppuccin palette automatically.
 
 **How to use:** Automatic — it's always visible at the bottom.
 
@@ -738,15 +733,15 @@ These work in both Normal mode and Terminal mode.
 
 ### Changing Color Scheme
 
-Available themes: `kanagawa` (default), `kanagawa-dragon`, `kanagawa-lotus`, `catppuccin`, `tokyonight`, `nightfox`
+Available themes: `catppuccin-mocha` (default), `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-latte`, `kanagawa`, `tokyonight`, `nightfox`
 
 To switch, edit `lua/plugins/colorscheme.lua` and change:
 ```lua
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme catppuccin-mocha")
 ```
 to any of:
 ```lua
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme kanagawa")
 vim.cmd("colorscheme tokyonight")
 vim.cmd("colorscheme nightfox")
 ```

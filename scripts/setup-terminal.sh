@@ -1,5 +1,5 @@
 #!/bin/bash
-# setup-terminal.sh — Install and configure terminal tools, shell prompt, and iTerm2
+# setup-terminal.sh — Install and configure terminal tools, shell prompt, and Ghostty
 set -e
 
 echo "==> Setting up terminal environment..."
@@ -11,9 +11,9 @@ if ! command -v brew &>/dev/null; then
   exit 1
 fi
 
-# Install iTerm2
-echo "==> Installing iTerm2..."
-brew install --cask iterm2
+# Install Ghostty
+echo "==> Installing Ghostty..."
+brew install --cask ghostty
 
 # Install Nerd Font
 echo "==> Installing JetBrains Mono Nerd Font..."
@@ -23,77 +23,52 @@ brew install --cask font-jetbrains-mono-nerd-font
 echo "==> Installing CLI tools..."
 brew install starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr thefuck zsh-autosuggestions zsh-syntax-highlighting
 
-# Configure Starship prompt (Kanagawa-inspired)
+# Configure Ghostty
+echo "==> Configuring Ghostty..."
+mkdir -p ~/.config/ghostty
+cat > ~/.config/ghostty/config << 'GHOSTTY'
+# Theme
+theme = catppuccin-mocha
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+# Window
+window-decoration = false
+window-padding-x = 8
+window-padding-y = 4
+background-opacity = 0.95
+background-blur-radius = 20
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+
+# Scrollback
+scrollback-limit = 10000
+
+# Shell integration
+shell-integration = zsh
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = true
+GHOSTTY
+
+# Configure Starship prompt (Catppuccin powerline)
 echo "==> Configuring Starship prompt..."
 mkdir -p ~/.config
-cat > ~/.config/starship.toml << 'STARSHIP'
-# Kanagawa-inspired Starship prompt
-
-format = """
-$directory\
-$git_branch\
-$git_status\
-$nodejs\
-$python\
-$rust\
-$golang\
-$docker_context\
-$cmd_duration\
-$line_break\
-$character"""
-
-[directory]
-style = "bold #7E9CD8"
-truncation_length = 3
-truncate_to_repo = true
-
-[git_branch]
-style = "bold #957FB8"
-symbol = " "
-
-[git_status]
-style = "#DCA561"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-modified = "!${count}"
-untracked = "?${count}"
-staged = "+${count}"
-
-[character]
-success_symbol = "[❯](bold #76946A)"
-error_symbol = "[❯](bold #C34043)"
-
-[cmd_duration]
-style = "#727169"
-min_time = 2_000
-format = "took [$duration]($style) "
-
-[nodejs]
-style = "#98BB6C"
-symbol = " "
-
-[python]
-style = "#E6C384"
-symbol = " "
-
-[rust]
-style = "#FF5D62"
-symbol = " "
-
-[golang]
-style = "#7FB4CA"
-symbol = " "
-
-[docker_context]
-style = "#7FB4CA"
-symbol = " "
-STARSHIP
+starship preset catppuccin-powerline -o ~/.config/starship.toml
 
 # Configure bat
 echo "==> Configuring bat..."
 mkdir -p ~/.config/bat
-echo '--theme="TwoDark"' > ~/.config/bat/config
+echo '--theme="Catppuccin Mocha"' > ~/.config/bat/config
 
 # Configure git-delta
 echo "==> Configuring git-delta..."
@@ -102,7 +77,7 @@ git config --global interactive.diffFilter "delta --color-only"
 git config --global delta.navigate true
 git config --global delta.dark true
 git config --global delta.line-numbers true
-git config --global delta.syntax-theme "TwoDark"
+git config --global delta.syntax-theme "Catppuccin Mocha"
 git config --global merge.conflictstyle diff3
 git config --global diff.colorMoved default
 
@@ -152,12 +127,5 @@ fi
 echo ""
 echo "==> Terminal setup complete!"
 echo ""
-echo "Manual iTerm2 steps:"
-echo "  1. Set font: Settings > Profiles > Text > Font > JetBrainsMono Nerd Font (size 13-14)"
-echo "  2. Import Kanagawa colors: Settings > Profiles > Colors > Color Presets > Import"
-echo "     (Download kanagawa_wave.itermcolors from https://github.com/rebelot/kanagawa.nvim/tree/master/extras)"
-echo "  3. Set theme: Settings > Appearance > Theme > Minimal"
-echo "  4. Set keys: Settings > Profiles > Keys > Presets > Natural Text Editing"
-echo "  5. Optional: Settings > Profiles > Window > Transparency 10-15%"
-echo ""
-echo "Restart your terminal or run: source ~/.zshrc"
+echo "Open Ghostty to start using your new terminal."
+echo "Restart your shell or run: source ~/.zshrc"

@@ -6,12 +6,12 @@ A fully-featured Neovim setup for macOS with LSP, autocompletion, fuzzy finding,
 
 ## What You Get
 
-- Dashboard greeter with NEOVIM ASCII art and recent files
+- Dashboard greeter with NEOVIM ASCII art and recent projects
 - File explorer sidebar with git status colors
 - Fuzzy file/text search with Telescope
 - LSP-powered autocompletion, go-to-definition, and diagnostics
 - Inline git diff markers and LazyGit integration
-- Kanagawa color scheme with a custom statusline
+- Catppuccin Mocha color scheme with a matching statusline
 - Autosave on insert leave and focus lost
 - Flash jump to navigate anywhere on screen instantly
 
@@ -19,17 +19,16 @@ A fully-featured Neovim setup for macOS with LSP, autocompletion, fuzzy finding,
 
 ## Quick Setup (Automated)
 
-Run the setup scripts to install and configure everything automatically:
-
 ```bash
-# Install Homebrew first if you don't have it
+# 1. Install Homebrew (if you don't have it)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Set up Neovim with all plugins and dependencies
-./scripts/setup-neovim.sh
+# 2. Clone this repo
+git clone https://github.com/alvina-yang/NeoVim.git ~/.config/nvim
 
-# Set up terminal (iTerm2, CLI tools, prompt, etc.)
-./scripts/setup-terminal.sh
+# 3. Run the setup scripts
+~/.config/nvim/scripts/setup-neovim.sh
+~/.config/nvim/scripts/setup-terminal.sh
 ```
 
 If you prefer to set things up manually, follow the steps below.
@@ -52,7 +51,13 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-### 2. Install Neovim and Dependencies
+### 2. Clone This Repository
+
+```bash
+git clone https://github.com/alvina-yang/NeoVim.git ~/.config/nvim
+```
+
+### 3. Install Neovim and Dependencies
 
 ```bash
 # Neovim (0.11+ required)
@@ -69,37 +74,24 @@ brew install node npm
 
 # Required for LazyGit (full git UI inside Neovim)
 brew install lazygit
-
-# Optional: better terminal emulator
-brew install --cask iterm2
 ```
 
-### 3. Install a Nerd Font (Required for Icons)
+### 4. Install a Nerd Font (Required for Icons)
 
 ```bash
-brew install --cask font-hack-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
 ```
 
-Then set your terminal font to **Hack Nerd Font**:
+Set your terminal font to **JetBrainsMono Nerd Font**:
+- **Ghostty:** Already configured in `~/.config/ghostty/config` (see [terminal.md](terminal.md))
 
-- **iTerm2:** Preferences > Profiles > Text > Font > Select "Hack Nerd Font"
-- **Terminal.app:** Preferences > Profiles > Font > Change > Select "Hack Nerd Font"
-- **Kitty:** Add `font_family Hack Nerd Font` to `~/.config/kitty/kitty.conf`
-
-### 4. Backup Existing Neovim Config (if any)
+### 5. Install Ghostty (Recommended Terminal)
 
 ```bash
-mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
-mv ~/.local/share/nvim ~/.local/share/nvim.bak 2>/dev/null
-mv ~/.local/state/nvim ~/.local/state/nvim.bak 2>/dev/null
-mv ~/.cache/nvim ~/.cache/nvim.bak 2>/dev/null
+brew install --cask ghostty
 ```
 
-### 5. Clone This Repository
-
-```bash
-git clone https://github.com/alvina-yang/NeoVim.git ~/.config/nvim
-```
+See [terminal.md](terminal.md) for full Ghostty configuration with Catppuccin Mocha theme.
 
 ### 6. Launch Neovim
 
@@ -139,15 +131,15 @@ Run these commands inside Neovim:
     │   ├── diagnostics.lua     Diagnostic signs, virtual text, error line highlights
     │   └── keymaps.lua         All keybindings (splits, tabs, clipboard, terminal)
     └── plugins/
-        ├── alpha.lua           Dashboard/greeter
-        ├── colorscheme.lua     Kanagawa (default) + extra themes
+        ├── alpha.lua           Dashboard/greeter with two-column layout
+        ├── colorscheme.lua     Catppuccin Mocha (default) + extra themes
         ├── editor.lua          Autopairs, comments, surround, indent, flash, illuminate
         ├── git.lua             Git blame, lazygit, gitsigns, diffview
         ├── lsp.lua             LSP, completion, trouble, lsp-progress
-        ├── lualine.lua         Statusline with custom colored theme
+        ├── lualine.lua         Statusline with Catppuccin theme
         ├── nvim-tree.lua       File explorer with git status colors
         ├── session.lua         Session save/restore
-        ├── telescope.lua       Fuzzy finder with fzf-native
+        ├── telescope.lua       Fuzzy finder with fzf-native + project picker
         ├── tools.lua           Oil file manager, markdown preview
         ├── treesitter.lua      Syntax highlighting + code understanding
         └── ui.lua              Bufferline, noice, notify, dressing, which-key
@@ -168,6 +160,7 @@ Run these commands inside Neovim:
 | `Space fg` | Live grep (search text in all files) |
 | `Space fr` | Recent files |
 | `Space fc` | Find word under cursor |
+| `Space fp` | Find projects |
 | `Space ft` | Find all TODOs |
 | `s` + chars | Flash jump anywhere on screen |
 | `]]` / `[[` | Next/previous word occurrence |
@@ -253,7 +246,7 @@ For the **complete keybinding reference and plugin guide**, see [INFO.md](INFO.m
 
 | Problem | Solution |
 |---------|----------|
-| Icons look broken | Install a Nerd Font and set it as your terminal font (step 3) |
+| Icons look broken | Install a Nerd Font and set it as your terminal font |
 | Treesitter errors | Run `:TSUpdate` to reinstall parsers |
 | LSP not working | Run `:Mason`, press `i` next to missing servers |
 | Telescope grep fails | Install ripgrep: `brew install ripgrep` |
@@ -264,7 +257,7 @@ For the **complete keybinding reference and plugin guide**, see [INFO.md](INFO.m
 
 ## Terminal Setup
 
-For a full terminal customization guide (iTerm2, Starship/Powerlevel10k prompt, CLI tools like eza, bat, fzf, zoxide, thefuck, and more), see [terminal.md](terminal.md).
+For a full terminal customization guide (Ghostty, Starship prompt, CLI tools like eza, bat, fzf, zoxide, thefuck, and more), see [terminal.md](terminal.md).
 
 ---
 
