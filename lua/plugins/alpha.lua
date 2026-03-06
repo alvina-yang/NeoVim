@@ -3,6 +3,7 @@ return {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup({
+        manual_mode = true,
         detection_methods = { "pattern", "lsp" },
         patterns = { ".git", "Makefile", "package.json", "Cargo.toml", "go.mod", ".project_root" },
         silent_chdir = true,
