@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 
 -- Basic options
 vim.opt.termguicolors = true
+vim.opt.guicursor = "n-v-c-sm:block-blinkwait300-blinkon200-blinkoff150,i-ci-ve:ver25-blinkwait300-blinkon200-blinkoff150,r-cr-o:hor20-blinkwait300-blinkon200-blinkoff150"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.timeoutlen = 300
