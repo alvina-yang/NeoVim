@@ -67,6 +67,47 @@ return {
     end,
   },
 
+  -- Breadcrumbs (LSP-powered code location bar)
+  {
+    "SmiteshP/nvim-navic",
+    lazy = true,
+    opts = { lsp = { auto_attach = true }, highlight = true },
+  },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = { "SmiteshP/nvim-navic", "nvim-tree/nvim-web-devicons" },
+    event = "LspAttach",
+    opts = {},
+  },
+
+  -- Incline: floating filename labels on splits
+  {
+    "b0o/incline.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("incline").setup({
+        window = {
+          padding = 0,
+          margin = { horizontal = 0 },
+        },
+        render = function(props)
+          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+          if filename == "" then filename = "[No Name]" end
+          local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+          local modified = vim.bo[props.buf].modified
+          return {
+            ft_icon and { " ", ft_icon, " ", guifg = ft_color } or "",
+            " ",
+            { filename, gui = modified and "bold,italic" or "bold" },
+            " ",
+          }
+        end,
+      })
+    end,
+  },
+
   -- Dressing: prettier input/select dialogs
   {
     "stevearc/dressing.nvim",
