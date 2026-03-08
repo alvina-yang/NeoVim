@@ -1,6 +1,5 @@
 #!/bin/bash
 # setup-terminal.sh — Install and configure terminal tools, shell prompt, and Ghostty
-set -e
 
 echo "==> Setting up terminal environment..."
 
@@ -11,23 +10,44 @@ if ! command -v brew &>/dev/null; then
   exit 1
 fi
 
+# Helper: install a cask only if not already installed
+install_cask() {
+  if brew list --cask "$1" &>/dev/null; then
+    echo "  $1 already installed, skipping."
+  else
+    brew install --cask "$1"
+  fi
+}
+
+# Helper: install a formula only if not already installed
+install_formula() {
+  if brew list "$1" &>/dev/null; then
+    echo "  $1 already installed, skipping."
+  else
+    brew install "$1"
+  fi
+}
+
 # Install Ghostty
 echo "==> Installing Ghostty..."
-brew install --cask ghostty
+install_cask ghostty
 
 # Install Nerd Font
 echo "==> Installing JetBrains Mono Nerd Font..."
-brew install --cask font-jetbrains-mono-nerd-font
+install_cask font-jetbrains-mono-nerd-font
 
 # Install all CLI tools
 echo "==> Installing CLI tools..."
-brew install starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr thefuck zsh-autosuggestions zsh-syntax-highlighting
+for tool in starship eza bat fd ripgrep zoxide fzf git-delta lazygit btop tldr thefuck zsh-autosuggestions zsh-syntax-highlighting; do
+  install_formula "$tool"
+done
 
 # Configure Ghostty
 echo "==> Configuring Ghostty..."
 GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
 mkdir -p "$GHOSTTY_DIR"
-cat > "$GHOSTTY_DIR/config" << 'GHOSTTY'
+if [ ! -f "$GHOSTTY_DIR/config" ] || ! grep -q "Catppuccin Mocha" "$GHOSTTY_DIR/config"; then
+  cat > "$GHOSTTY_DIR/config" << 'GHOSTTY'
 # Theme
 theme = Catppuccin Mocha
 
@@ -60,16 +80,30 @@ clipboard-read = allow
 clipboard-write = allow
 copy-on-select = true
 GHOSTTY
+  echo "  Ghostty config written."
+else
+  echo "  Ghostty already configured, skipping."
+fi
 
 # Configure Starship prompt (Catppuccin powerline)
 echo "==> Configuring Starship prompt..."
 mkdir -p ~/.config
-starship preset catppuccin-powerline -o ~/.config/starship.toml
+if [ ! -f ~/.config/starship.toml ] || ! grep -q "catppuccin" ~/.config/starship.toml; then
+  starship preset catppuccin-powerline -o ~/.config/starship.toml
+  echo "  Starship config written."
+else
+  echo "  Starship already configured, skipping."
+fi
 
 # Configure bat
 echo "==> Configuring bat..."
 mkdir -p ~/.config/bat
-echo '--theme="Catppuccin Mocha"' > ~/.config/bat/config
+if [ ! -f ~/.config/bat/config ] || ! grep -q "Catppuccin" ~/.config/bat/config; then
+  echo '--theme="Catppuccin Mocha"' > ~/.config/bat/config
+  echo "  Bat config written."
+else
+  echo "  Bat already configured, skipping."
+fi
 
 # Configure git-delta
 echo "==> Configuring git-delta..."
