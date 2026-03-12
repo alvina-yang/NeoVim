@@ -66,6 +66,42 @@ return {
     end,
   },
 
+  -- Rainbow delimiters: colored matching brackets
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("rainbow-delimiters.setup").setup({})
+    end,
+  },
+
+  -- Dim inactive splits
+  {
+    "levouh/tint.nvim",
+    event = "WinNew",
+    config = function()
+      require("tint").setup({
+        tint = -30,
+        saturation = 0.7,
+        tint_background_colors = true,
+        window_ignore_function = function(winid)
+          local buf = vim.api.nvim_win_get_buf(winid)
+          local ft = vim.bo[buf].filetype
+          return ft == "NvimTree" or ft == "alpha" or ft == "TelescopePrompt"
+        end,
+      })
+    end,
+  },
+
+  -- Smooth animations for cursor, scroll, resize
+  {
+    "echasnovski/mini.animate",
+    event = "VeryLazy",
+    config = function()
+      require("mini.animate").setup()
+    end,
+  },
+
   -- Flash: jump anywhere on screen
   {
     "folke/flash.nvim",
