@@ -81,8 +81,8 @@ return {
     event = "WinNew",
     config = function()
       require("tint").setup({
-        tint = -30,
-        saturation = 0.7,
+        tint = -8,
+        saturation = 0.92,
         tint_background_colors = true,
         window_ignore_function = function(winid)
           local buf = vim.api.nvim_win_get_buf(winid)
@@ -93,14 +93,6 @@ return {
     end,
   },
 
-  -- Smooth animations for cursor, scroll, resize
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    config = function()
-      require("mini.animate").setup()
-    end,
-  },
 
   -- Flash: jump anywhere on screen
   {
