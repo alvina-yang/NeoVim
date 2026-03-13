@@ -81,8 +81,8 @@ return {
     event = "WinNew",
     config = function()
       require("tint").setup({
-        tint = -8,
-        saturation = 0.92,
+        tint = -12,
+        saturation = 0.88,
         tint_background_colors = true,
         window_ignore_function = function(winid)
           local buf = vim.api.nvim_win_get_buf(winid)
