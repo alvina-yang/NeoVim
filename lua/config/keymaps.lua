@@ -37,8 +37,9 @@ vim.keymap.set("t", "<D-v>", function()
 end, { desc = "Paste from clipboard", silent = true })
 
 -- Format
-vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format file", silent = true })
-vim.keymap.set("v", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format selection", silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format file/selection", silent = true })
 
 -- Terminal
 vim.keymap.set("n", "<leader>th", "<cmd>belowright split | terminal<cr>", { desc = "Terminal below", silent = true })
